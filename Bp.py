@@ -9,7 +9,7 @@ W1_NUM = 30  # 第二层神经元个数
 OUT_NUM = 10  # 输出层神经元个数
 IMG_COUNT = 60000  # 训练样本集的数量
 EPOCH = 10  # 训练样本集的次数
-BATCH_SIZE = 50  # 一次训练的样本个数
+BATCH_SIZE = 1  # 一次训练的样本个数
 ITERATION = int(IMG_COUNT / BATCH_SIZE)  # 一个样本集迭代的次数
 
 
@@ -19,9 +19,10 @@ class Bp():
         self.__set = np.insert(set, 0, values=1, axis=1)
         self.__set_label = set_label
         col = self.__set.shape[1]
-        self.__w0 = np.random.normal(loc=0, scale=math.sqrt(col), size=(W0_NUM, col))
-        self.__w1 = np.random.normal(loc=0, scale=math.sqrt(W0_NUM), size=(W1_NUM, W0_NUM + 1))
-        self.__w2 = np.random.normal(loc=0, scale=math.sqrt(W1_NUM), size=(OUT_NUM, W1_NUM + 1))
+        self.__w0 = np.random.normal(loc=0, scale=1 / math.sqrt(col), size=(W0_NUM, col))
+        self.__w1 = np.random.normal(loc=0, scale=1 / math.sqrt(W0_NUM), size=(W1_NUM, W0_NUM + 1))
+        print(self.__w1)
+        self.__w2 = np.random.normal(loc=0, scale=1 / math.sqrt(W1_NUM), size=(OUT_NUM, W1_NUM + 1))
 
     def iteration(self):
         for x in range(EPOCH):
