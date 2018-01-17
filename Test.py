@@ -38,7 +38,10 @@ class Test:
 
 start = datetime.datetime.now()
 t = Test()
-print(t.test())
+f = open("rst","w")
+f.write(t.test())
+f.write("\n")
 end = datetime.datetime.now()
-print(end-start)
+f.write(str(end-start))
+f.close()
 # print(t.test(set="train-images.idx3-ubyte",set_label="train-labels.idx1-ubyte"))
