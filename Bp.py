@@ -1,3 +1,4 @@
+# coding:utf-8
 import numpy as np
 import matplotlib.pyplot as plt
 from Sigmoid import Sigmoid
@@ -11,8 +12,9 @@ EPOCH = 10  # 训练样本集的次数
 BATCH_SIZE = 50  # 一次训练的样本个数
 ITERATION = int(IMG_COUNT / BATCH_SIZE)  # 一个样本集迭代的次数
 
+
 class Bp():
-    def __init__(self, eta=0.02, set=None, set_label=None):
+    def __init__(self, eta=0.0001, set=None, set_label=None):
         self.__eta = eta
         self.__set = np.insert(set, 0, values=1, axis=1)
         self.__set_label = set_label
@@ -47,9 +49,9 @@ class Bp():
                         np.delete(delta_w1, 0, axis=0), self.__w1)
                     var_w0 = var_w0 + self.update_hiding(
                         self.__w0, delta_w0, x_in, y0)
-                self.__w2 = self.__w2 + (1 / BATCH_SIZE) * var_w2
-                self.__w1 = self.__w1 + (1 / BATCH_SIZE) * var_w1
-                self.__w0 = self.__w0 + (1 / BATCH_SIZE) * var_w0
+                self.__w2 = self.__w2 + (1 / BATCH_SIZE) * self.__eta * var_w2
+                self.__w1 = self.__w1 + (1 / BATCH_SIZE) * self.__eta * var_w1
+                self.__w0 = self.__w0 + (1 / BATCH_SIZE) * self.__eta * var_w0
         return self.__w0, self.__w1, self.__w2
 
     def calculate(self, w=None, x=None):

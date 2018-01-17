@@ -1,3 +1,4 @@
+# coding:utf-8
 from ReadImage import LoadIdx3
 from Bp import Bp
 import numpy as np
@@ -19,7 +20,7 @@ class Test:
         w0, w1, w2 = bp.iteration()
         count = 0
         for i in range(10000):
-            x_in = __set[i].reshape(785, 1) / 255
+            x_in = __set[i].reshape(785, 1)
             v0, y0 = bp.calculate(w0, x=x_in)
             y0_add_offset = np.insert(y0, 0, values=1, axis=0)
             v1, y1 = bp.calculate(w1, x=y0_add_offset)
