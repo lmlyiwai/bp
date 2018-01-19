@@ -4,7 +4,7 @@ import datetime
 import numpy as np
 from read_image import LoadIdx3
 
-from src.bp import Bp
+from bp import Bp
 
 class Test:
     def __init__(self):

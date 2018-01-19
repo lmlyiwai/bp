@@ -1,7 +1,7 @@
 # coding:utf-8
 import math
 import numpy as np
-from src.sigmoid import Sigmoid
+from sigmoid import Sigmoid
 
 W0_NUM = 50  # 第一层神经元个数
 W1_NUM = 30  # 第二层神经元个数
