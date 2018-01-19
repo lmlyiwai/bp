@@ -7,13 +7,13 @@ W0_NUM = 50  # 第一层神经元个数
 W1_NUM = 30  # 第二层神经元个数
 OUT_NUM = 10  # 输出层神经元个数
 IMG_COUNT = 60000  # 训练样本集的数量
-EPOCH = 10  # 训练样本集的次数
+EPOCH = 100  # 训练样本集的次数
 BATCH_SIZE = 200  # 一次训练的样本个数
 ITERATION = int(IMG_COUNT / BATCH_SIZE)  # 一个样本集迭代的次数
 
 
 class Bp():
-    def __init__(self, eta=0.001, set=None, set_label=None):
+    def __init__(self, eta=0.0001, set=None, set_label=None):
         self.__eta = eta
         self.__set = np.insert(set, 0, values=1, axis=1)
         self.__set_label = set_label
