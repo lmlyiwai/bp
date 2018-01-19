@@ -8,7 +8,7 @@ class LoadIdx3():
     def __init__(self):
         pass
 
-    def load_set_file(self, set_file="train-images.idx3-ubyte"):
+    def load_set_file(self, set_file="data/train-images.idx3-ubyte"):
         file = open(set_file, "rb")
         buf = file.read()
         index = 0
@@ -31,7 +31,7 @@ class LoadIdx3():
         self.set = (self.set - set_min) / (set_max - set_min)
         return self.set
 
-    def load_label_file(self, label_file="train-labels.idx1-ubyte"):
+    def load_label_file(self, label_file="data/train-labels.idx1-ubyte"):
         file = open(label_file, "rb")
         buf = file.read()
         index = 0

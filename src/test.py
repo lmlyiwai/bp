@@ -1,15 +1,17 @@
 # coding:utf-8
-from ReadImage import LoadIdx3
-from Bp import Bp
-import numpy as np
 import datetime
+
+import numpy as np
+from read_image import LoadIdx3
+
+from src.bp import Bp
 
 class Test:
     def __init__(self):
         pass
 
-    def test(self, set="t10k-images.idx3-ubyte",
-             set_label="t10k-labels.idx1-ubyte"):
+    def test(self, set="data/t10k-images.idx3-ubyte",
+             set_label="data/t10k-labels.idx1-ubyte"):
         load_data = LoadIdx3()
         bp = Bp(set=load_data.load_set_file(),
                 set_label=load_data.load_label_file())
@@ -39,7 +41,7 @@ class Test:
 start = datetime.datetime.now()
 t = Test()
 f = open("rst","w")
-f.write(t.test())
+f.write(str(t.test()))
 f.write("\n")
 end = datetime.datetime.now()
 f.write(str(end-start))

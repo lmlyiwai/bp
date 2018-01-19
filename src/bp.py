@@ -1,27 +1,25 @@
 # coding:utf-8
-import numpy as np
-import matplotlib.pyplot as plt
-from Sigmoid import Sigmoid
 import math
+import numpy as np
+from src.sigmoid import Sigmoid
 
 W0_NUM = 50  # 第一层神经元个数
 W1_NUM = 30  # 第二层神经元个数
 OUT_NUM = 10  # 输出层神经元个数
 IMG_COUNT = 60000  # 训练样本集的数量
 EPOCH = 10  # 训练样本集的次数
-BATCH_SIZE = 1  # 一次训练的样本个数
+BATCH_SIZE = 200  # 一次训练的样本个数
 ITERATION = int(IMG_COUNT / BATCH_SIZE)  # 一个样本集迭代的次数
 
 
 class Bp():
-    def __init__(self, eta=0.0001, set=None, set_label=None):
+    def __init__(self, eta=0.001, set=None, set_label=None):
         self.__eta = eta
         self.__set = np.insert(set, 0, values=1, axis=1)
         self.__set_label = set_label
         col = self.__set.shape[1]
         self.__w0 = np.random.normal(loc=0, scale=1 / math.sqrt(col), size=(W0_NUM, col))
         self.__w1 = np.random.normal(loc=0, scale=1 / math.sqrt(W0_NUM), size=(W1_NUM, W0_NUM + 1))
-        print(self.__w1)
         self.__w2 = np.random.normal(loc=0, scale=1 / math.sqrt(W1_NUM), size=(OUT_NUM, W1_NUM + 1))
 
     def iteration(self):
@@ -38,7 +36,7 @@ class Bp():
                     y1_add_offset = np.insert(y1, 0, values=1, axis=0)
                     v2, y2 = self.calculate(w=self.__w2, x=y1_add_offset)
                     d = np.zeros((10, 1)) - 1
-                    d_index = int(self.__set_label[i])
+                    d_index = int(self.__set_label[i * BATCH_SIZE + b])
                     d[d_index] = 1
                     delta_w2 = self.calculate_delta(d, y2)
                     var_w2 = var_w2 + self.update_output(
